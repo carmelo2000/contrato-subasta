@@ -33,7 +33,9 @@ Muestra el ganador y el monto.
 
 📝 Nombre del contrato: Subasta
 🎯 Propósito del contrato
+
 Este contrato permite realizar una subasta pública descentralizada, donde múltiples usuarios pueden pujar por un bien durante un tiempo determinado. Al finalizar la subasta, el mejor postor gana, se registra la comisión para el dueño, y los demás ofertantes pueden retirar sus fondos.
+
 
 🧱 Componentes principales
 🧑‍💼 1. Propiedades del contrato
@@ -60,7 +62,9 @@ struct Oferta {
 Se almacena la mejor oferta y un historial de todas las ofertas.
 
 ⚙️ Funciones y lógica
+
 🏗️ constructor(uint _duracionMinutos)
+
 Inicializa la subasta.
 
 Calcula finSubasta en base al tiempo actual más la duración.
@@ -70,6 +74,8 @@ Establece al creador como dueno.
 Activa la subasta.
 
 📤 function ofertar() external payable
+
+
 Permite a los usuarios hacer una oferta:
 
 Verifica que la subasta esté activa y dentro del tiempo permitido.
@@ -83,6 +89,7 @@ Si existe una mejor oferta anterior, se guarda en un mapa de fondos reembolsable
 Registra y emite el evento NuevaOferta.
 
 ⏹️ function finalizarSubasta() external soloDueno
+
 Función que puede llamar solo el dueño:
 
 Verifica que el tiempo de subasta haya finalizado.
@@ -94,6 +101,7 @@ Calcula la comisión del dueño (2%) y transfiere el restante.
 Emite el evento SubastaFinalizada.
 
 💸 function reembolsar() external
+
 Permite a los ofertantes no ganadores recuperar su dinero:
 
 Verifica que el ofertante tenga fondos reembolsables.
