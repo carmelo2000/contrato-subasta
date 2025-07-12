@@ -32,12 +32,14 @@ Muestra el ganador y el monto.
 
 
 📝 Nombre del contrato: Subasta
+
 🎯 Propósito del contrato
 
 Este contrato permite realizar una subasta pública descentralizada, donde múltiples usuarios pueden pujar por un bien durante un tiempo determinado. Al finalizar la subasta, el mejor postor gana, se registra la comisión para el dueño, y los demás ofertantes pueden retirar sus fondos.
 
 
 🧱 Componentes principales
+
 🧑‍💼 1. Propiedades del contrato
 address public dueno: dirección del creador del contrato (el dueño de la subasta).
 
@@ -50,6 +52,7 @@ bool public activa: bandera para indicar si la subasta sigue activa.
 uint public comision = 2: porcentaje de comisión que el dueño cobra del valor final (2%).
 
 📦 2. Estructura Oferta
+
 Representa una oferta en la subasta:
 
 solidity
@@ -111,22 +114,28 @@ Transfiere esos fondos y los pone en cero.
 📜 function mostrarOfertas() external view returns (Oferta[] memory)
 Devuelve el historial completo de ofertas en orden de llegada.
 
+
 🥇 function obtenerGanador() external view returns (address, uint)
 Solo puede llamarse una vez que la subasta ha terminado.
 
+
 Devuelve el ganador y el monto de la mejor oferta.
+
 
 📢 Eventos
 NuevaOferta(address ofertante, uint monto): emitido cada vez que alguien hace una oferta válida.
 
 SubastaFinalizada(address ganador, uint montoGanador): emitido al finalizar la subasta con el ganador.
 
+
 🔐 Modificadores
 soloMientrasActiva: asegura que ciertas funciones solo se ejecuten mientras la subasta está activa.
 
 soloDueno: restringe funciones a que solo las pueda ejecutar el dueño de la subasta.
 
+
 ✅ Resumen del flujo
+
 🛠️ El dueño despliega el contrato indicando duración (ej. 10 minutos).
 
 🧑 Usuarios hacen ofertas superando la anterior en al menos 5%.
@@ -138,6 +147,7 @@ soloDueno: restringe funciones a que solo las pueda ejecutar el dueño de la sub
 🔁 Los ofertantes perdedores pueden retirar su dinero.
 
 🚨 Ventajas del contrato
+
 Transparente y sin intermediarios.
 
 Reembolsos automáticos.
